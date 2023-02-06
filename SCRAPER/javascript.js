@@ -7,7 +7,7 @@ header('Access-Control-Allow-Origin: *');
 getPath();
 getData();
 getNews();
-getPhoto();
+
 echo json_encode($response);
 function crawl_page($icone)
 {
@@ -55,15 +55,4 @@ function getNews(){
     }
 }
 
-function getPhoto(){
-    global $response;
-    libxml_use_internal_errors(true);
-    $dom = new DomDocument;
-    $dom->loadHTMLFile("https://www.ansa.it/");
-    $xpath = new DomXPath($dom);
-    $news = $xpath->query("//img");
-    foreach ($news as $i => $node) {
-        $response['img'][]=$node->nodeValue;
-    }
-}
 ?>
